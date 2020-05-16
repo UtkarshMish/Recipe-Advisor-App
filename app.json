@@ -1,0 +1,27 @@
+{
+  "expo": {
+    "name": "recipe_advisor",
+    "slug": "recipe_advisor",
+    "platforms": ["ios", "android", "web"],
+    "version": "1.0.1",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/recipe_starter.png",
+      "resizeMode": "cover",
+      "backgroundColor": "#000"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": ["**/*"],
+    "android": {
+      "package": "com.student.recipe_advisor",
+      "versionCode": 1
+    },
+    "ios": {
+      "supportsTablet": true
+    },
+    "description": "A Recipe Advisor Application that satisfy user need to view and search Ingredients"
+  }
+}
