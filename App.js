@@ -8,11 +8,23 @@ import {
 } from "react-native";
 import { Button, Icon } from "react-native-elements";
 import { WebView } from "react-native-webview";
-
+import { BackHandler } from "react-native";
 export default class App extends Component {
   state = {
     isLoading: true,
+    backCount: 0,
     url: "http://www.recipe-advisor.team",
+  };
+  componentDidMount() {
+    BackHandler.addEventListener("hardwareBackPress", this.backPressAction);
+  }
+  backPressAction = async () => {
+    const { backCount } = this.state;
+    this.setState({ backCount: backCount + 1 });
+    if (backCount > 2) {
+      console.log(backCount);
+      BackHandler.exitApp();
+    }
   };
   handleWebviewError = () => {
     return (
