@@ -10,6 +10,7 @@ import
 } from "react-native";
 import { WebView } from "react-native-webview";
 import Loader from "./Components/Loader";
+import AppStyles from "./AppStyles";
 const loaderAnimation = require("./assets/cooker-loader.json");
 const notFoundAnimation = require("./assets/not-found.json");
 export default class App extends Component
@@ -64,9 +65,10 @@ export default class App extends Component
   {
     const INJECTEDJAVASCRIPT = `const meta = document.createElement('meta'); meta.setAttribute('content', 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0'); meta.setAttribute('name', 'viewport'); document.getElementsByTagName('head')[0].appendChild(meta); `;
     return (
-      <ScrollView contentContainerStyle={{ flex: 1, }} refreshControl={this.showRefresh()} keyboardShouldPersistTaps="always">
+      <ScrollView refreshControl={this.showRefresh()} keyboardShouldPersistTaps="always" >
         <StatusBar barStyle="default" />
         <WebView
+          containerStyle={AppStyles.webView}
           source={{
             uri: this.state.url,
           }}
@@ -83,7 +85,7 @@ export default class App extends Component
           ref={(ref) => (this.RECIPE = ref)}
           saveFormDataDisabled={false}
           onNavigationStateChange={(e) => this.handleChange(e)} />
-      </ScrollView>
+      </ScrollView >
 
     );
   }

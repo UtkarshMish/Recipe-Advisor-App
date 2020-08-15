@@ -29,23 +29,18 @@ class Loader extends React.Component {
 export default Loader;
 const styles = StyleSheet.create({
   animationContainer: {
-    display: "flex",
-    flexDirection: "column-reverse",
+    height: "55%",
     width: "100%",
-    height: "100%",
     position: "absolute",
   },
-  animationStyles: {
-    flex: 0.5,
-  },
+  animationStyles: { opacity: 1 },
   textStyle: {
-    flex: 0.5,
     textAlign: "center",
     fontSize: 32,
     fontWeight: "bold",
-    bottom: "10%",
     justifyContent: "center",
     textTransform: "capitalize",
     color: "crimson",
+    top: "60%",
   },
 });
