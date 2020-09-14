@@ -6,7 +6,9 @@ import
   ToastAndroid,
   StatusBar,
   Alert, View,
-  BackHandler
+  BackHandler,
+  FlatList,
+  Button
 } from "react-native";
 import { WebView } from "react-native-webview";
 import Loader from "./Components/Loader";
@@ -65,27 +67,32 @@ export default class App extends Component
   {
     const INJECTEDJAVASCRIPT = `const meta = document.createElement('meta'); meta.setAttribute('content', 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0'); meta.setAttribute('name', 'viewport'); document.getElementsByTagName('head')[0].appendChild(meta); `;
     return (
-      <ScrollView refreshControl={this.showRefresh()} keyboardShouldPersistTaps="always" >
-        <StatusBar barStyle="default" />
-        <WebView
-          containerStyle={AppStyles.webView}
-          source={{
-            uri: this.state.url,
-          }}
-          isTVSelectable
-          injectedJavaScript={INJECTEDJAVASCRIPT}
-          originWhitelist={["*"]}
-          thirdPartyCookiesEnabled
-          startInLoadingState
-          onShouldStartLoadWithRequest
-          renderError={() => (<Loader displayAnimation={notFoundAnimation} title={"Error ! reload 🔄"} bgColor={"darkblue"} />)}
-          domStorageEnabled
-          allowFileAccess
-          renderLoading={() => (<Loader displayAnimation={loaderAnimation} title={"Please Wait ! Cooking ..."} />)}
-          ref={(ref) => (this.RECIPE = ref)}
-          saveFormDataDisabled={false}
-          onNavigationStateChange={(e) => this.handleChange(e)} />
-      </ScrollView >
+      <View style={{ position: "absolute", height: "100%", width: "100%" }}>
+        <ScrollView
+          contentContainerStyle={AppStyles.webView}
+          keyboardShouldPersistTaps="always" >
+          <StatusBar barStyle="default" />
+          <WebView
+
+            source={{
+              uri: this.state.url,
+            }}
+            isTVSelectable
+            injectedJavaScript={INJECTEDJAVASCRIPT}
+            originWhitelist={["*"]}
+            thirdPartyCookiesEnabled
+            startInLoadingState
+            onShouldStartLoadWithRequest
+            renderError={() => (<Loader displayAnimation={notFoundAnimation} title={"Error ! reload 🔄"} bgColor={"darkblue"} />)}
+            domStorageEnabled
+            allowFileAccess
+            renderLoading={() => (<Loader displayAnimation={loaderAnimation} title={"Please Wait ! Cooking ..."} />)}
+            ref={(ref) => (this.RECIPE = ref)}
+            saveFormDataDisabled={false}
+            onNavigationStateChange={(e) => this.handleChange(e)} />
+        </ScrollView >
+        <Button onPress={() => this.showRefresh()} title="refresh"></Button>
+      </View>
 
     );
   }

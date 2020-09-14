@@ -29,7 +29,7 @@ class Loader extends React.Component {
 export default Loader;
 const styles = StyleSheet.create({
   animationContainer: {
-    height: "55%",
+    height: "100%",
     width: "100%",
     position: "absolute",
   },
